@@ -1,16 +1,19 @@
 import 'package:buracometro/modules/core/utils/themes.dart';
+import 'package:buracometro/modules/home/domain/entity/menu_item_types.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class BottomNavigationItem extends StatelessWidget {
+  final MenuItemType type;
   final Widget icon;
   final Widget? activeIcon;
   final String label;
-  final VoidCallback onPressed;
+  final Function(MenuItemType) onPressed;
   bool isSelected;
 
   BottomNavigationItem({
     Key? key,
+    required this.type,
     required this.icon,
     this.activeIcon,
     required this.label,
@@ -22,8 +25,7 @@ class BottomNavigationItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        onPressed();
-        isSelected = !isSelected;
+        onPressed(type);
       },
       child: SizedBox(
         width: 85,

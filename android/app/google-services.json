@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "825627241009",
+    "project_id": "buracometro-26dd3",
+    "storage_bucket": "buracometro-26dd3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:825627241009:android:82a2c894afcb336feb0310",
+        "android_client_info": {
+          "package_name": "br.com.gabinetedoamom.buracometro.buracometro"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "825627241009-5g1697covfp489vaov64sh3e681si85j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJhQ7A9dC1aw8Q5NjemawS4blwc65xh8c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "825627241009-5g1697covfp489vaov64sh3e681si85j.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "825627241009-gpcke9ckk7p4d8m0ih668q064vr2vn8c.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "br.com.gabinetedoamom.buracometro.buracometro"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:825627241009:android:7ef404c19e20c658eb0310",
+        "android_client_info": {
+          "package_name": "com.gabinetedoamom.buracometro"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "825627241009-5g1697covfp489vaov64sh3e681si85j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCJhQ7A9dC1aw8Q5NjemawS4blwc65xh8c"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "825627241009-5g1697covfp489vaov64sh3e681si85j.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "825627241009-gpcke9ckk7p4d8m0ih668q064vr2vn8c.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "br.com.gabinetedoamom.buracometro.buracometro"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
