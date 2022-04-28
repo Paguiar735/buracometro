@@ -12,8 +12,8 @@ class MenuUseCase {
         const DefaultMenuItem(menuType: MenuItemType.maps),
       ],
       [
-        const DefaultMenuItem(menuType: MenuItemType.help),
         const DefaultMenuItem(menuType: MenuItemType.about),
+        const DefaultMenuItem(menuType: MenuItemType.help),
       ]
     ];
   }

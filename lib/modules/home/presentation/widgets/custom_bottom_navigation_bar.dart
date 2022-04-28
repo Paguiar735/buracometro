@@ -22,25 +22,30 @@ class CustomBottomNavigationBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<BottomNavigationItem> navBarItem = [];
-     leftMenuItems.addAll(rightMenuItems);
-    for (final menu in leftMenuItems + rightMenuItems) {
+
+    final List<BottomNavigationItem> navBarLeftItems = [];
+    final List<BottomNavigationItem> navBarRightItems = [];
+
+    for (final menu in leftMenuItems) {
       if (menu is DefaultMenuItem) {
-        navBarItem.add(_getNavBarItemByType(menu.menuType));
+        navBarLeftItems.add(_getNavBarItemByType(menu.menuType));
       }
     }
 
-    final leftItems = navBarItem.sublist(0, 2);
-    final rightItems = navBarItem.sublist(2, 4).reversed.toList();
+    for (final menu in rightMenuItems) {
+      if (menu is DefaultMenuItem) {
+        navBarRightItems.add(_getNavBarItemByType(menu.menuType));
+      }
+    }
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Row(
-          children: leftItems,
+          children: navBarLeftItems,
         ),
         Row(
-          children: rightItems,
+          children: navBarRightItems,
         ),
       ],
     );
