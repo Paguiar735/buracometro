@@ -42,9 +42,12 @@ class CustomBottomNavigationBar extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Row(
+          mainAxisAlignment: MainAxisAlignment.start,
           children: navBarLeftItems,
         ),
+
         Row(
+          mainAxisAlignment: MainAxisAlignment.end,
           children: navBarRightItems,
         ),
       ],

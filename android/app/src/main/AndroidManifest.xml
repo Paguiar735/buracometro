@@ -4,7 +4,11 @@
         android:label="buracometro"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
-        <activity
+
+       <meta-data android:name="com.google.android.geo.API_KEY"
+           android:value="AIzaSyDTff0yGMUj04SaoNNO_QZmPfZyp90rgTs"/>
+
+       <activity
             android:name=".MainActivity"
             android:exported="true"
             android:launchMode="singleTop"
@@ -20,9 +24,6 @@
               android:name="io.flutter.embedding.android.NormalTheme"
               android:resource="@style/NormalTheme"
               />
-
-            <meta-data android:name="com.google.android.geo.API_KEY"
-                android:value="AIzaSyDTff0yGMUj04SaoNNO_QZmPfZyp90rgTs"/>
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>

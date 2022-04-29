@@ -1,7 +1,8 @@
 import 'package:buracometro/modules/home/presentation/page/home_page.dart';
+import 'package:buracometro/modules/maps/presentation/pages/maps_page.dart';
 import 'package:flutter/material.dart';
 
-import '../../di/injection.dart';
+import '../di/injection.dart';
 
 void main() {
   configureDependencies();

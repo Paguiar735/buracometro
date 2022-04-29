@@ -8,7 +8,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:buracometro/modules/main/main.dart';
+import 'package:buracometro/modules/main.dart';
 
 void main() {
 

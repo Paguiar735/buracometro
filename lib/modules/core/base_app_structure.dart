@@ -14,6 +14,7 @@ class BaseAppStructure extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: Colors.transparent,
         appBar: appBar ?? AppBar(
           leading: const Icon(Icons.account_circle),
           actions: const [
@@ -28,6 +29,7 @@ class BaseAppStructure extends StatelessWidget {
           backgroundColor: AppThemes.highLightColor,
           onPressed:  () {},
         ),
+        extendBody: true,
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         bottomNavigationBar: bottomNavigationBar,
         body: body,

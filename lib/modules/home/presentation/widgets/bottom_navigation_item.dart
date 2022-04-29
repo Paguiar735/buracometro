@@ -23,24 +23,32 @@ class BottomNavigationItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => onPressed.call(type),
-      child: SizedBox(
-        width: 85,
+    return SizedBox(
+      width: 80,
+      child: MaterialButton(
+        padding: EdgeInsets.zero,
+        onPressed: () => onPressed(type),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.max,
           children: [
             (icon is SvgPicture)
-                ? isSelected ? activeIcon ?? icon : icon
+                ? isSelected
+                    ? activeIcon ?? icon
+                    : icon
                 : Icon(
                     (icon as Icon).icon,
-                    color: isSelected ? AppThemes.highLightColor : Color(0xFF979797),
+                    color: isSelected
+                        ? AppThemes.highLightColor
+                        : AppThemes.secondaryGrayColor,
                   ),
             Text(
               label,
+              maxLines: 1,
               style: TextStyle(
-                color: isSelected ? AppThemes.highLightColor : Color(0xFF979797),
+                color: isSelected
+                    ? AppThemes.highLightColor
+                    : AppThemes.secondaryGrayColor,
               ),
             )
           ],

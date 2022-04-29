@@ -1,21 +1,26 @@
 import 'package:buracometro/modules/about/presentation/about_page.dart';
 import 'package:buracometro/modules/core/base_app_structure.dart';
+import 'package:buracometro/modules/help/presentation/help_page.dart';
 import 'package:buracometro/modules/home/domain/entity/menu_item.dart';
 import 'package:buracometro/modules/home/domain/entity/menu_item_types.dart';
+import 'package:buracometro/modules/home/presentation/bloc/home_bloc.dart';
 import 'package:buracometro/modules/home/presentation/bloc/home_event.dart';
 import 'package:buracometro/modules/home/presentation/bloc/home_state.dart';
+import 'package:buracometro/modules/home/presentation/widgets/custom_bottom_navigation_bar.dart';
 import 'package:buracometro/modules/maps/presentation/pages/maps_page.dart';
 import 'package:buracometro/modules/report/presentation/reports_page.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import '../../../../di/injection.dart';
-import '../../../help/presentation/help_page.dart';
-import '../bloc/home_bloc.dart';
-import '../widgets/custom_bottom_navigation_bar.dart';
+import 'package:buracometro/di/injection.dart';
 
-class HomePage extends StatelessWidget {
-  HomePage({Key? key}) : super(key: key);
+class HomePage extends StatefulWidget {
+  const HomePage({Key? key}) : super(key: key);
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
 
   final HomeBloc _homeBloc = getIt<HomeBloc>()..add(const HomeEventInit());
   final PageController _pageController = PageController();
@@ -57,10 +62,10 @@ class HomePage extends StatelessWidget {
   }
 
   Widget _buildHomePage(
-    List<MenuItem> rightMenuItems,
-    List<MenuItem> leftMenuItems,
-    int selectedTab,
-  ) {
+      List<MenuItem> rightMenuItems,
+      List<MenuItem> leftMenuItems,
+      int selectedTab,
+      ) {
     return BaseAppStructure(
       bottomNavigationBar: BottomAppBar(
         shape: const CircularNotchedRectangle(),

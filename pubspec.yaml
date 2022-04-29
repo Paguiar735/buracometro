@@ -43,6 +43,8 @@ dependencies:
   firebase_remote_config: ^2.0.5
   injectable: ^1.5.3
   get_it: ^7.2.0
+  google_maps_flutter: ^2.1.4
+  location: ^4.3.0
 
 dev_dependencies:
   flutter_test:
