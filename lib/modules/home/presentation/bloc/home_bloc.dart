@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:buracometro/modules/home/presentation/bloc/home_event.dart';
 import 'package:buracometro/modules/home/presentation/bloc/home_state.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 import '../../domain/use_case/menu_use_case.dart';
@@ -17,6 +18,7 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
   FutureOr<void> _onTabChange(
       HomeEventChangeTab event, Emitter<HomeState> emit) {
     final loadedState = state as HomeStateLoaded;
+    debugPrint(event.toString());
     emit(
       HomeStateSwitchTab(
         rightMenuItems: loadedState.rightMenuItems,

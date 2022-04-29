@@ -9,9 +9,9 @@ class BottomNavigationItem extends StatelessWidget {
   final Widget? activeIcon;
   final String label;
   final Function(MenuItemType) onPressed;
-  bool isSelected;
+  final bool isSelected;
 
-  BottomNavigationItem({
+  const BottomNavigationItem({
     Key? key,
     required this.type,
     required this.icon,
@@ -24,9 +24,7 @@ class BottomNavigationItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        onPressed(type);
-      },
+      onTap: () => onPressed.call(type),
       child: SizedBox(
         width: 85,
         child: Column(

@@ -1,25 +1,24 @@
+import 'package:buracometro/modules/about/presentation/about_page.dart';
 import 'package:buracometro/modules/core/base_app_structure.dart';
-import 'package:buracometro/modules/core/utils/assets.dart';
-import 'package:buracometro/modules/core/utils/strings.dart';
 import 'package:buracometro/modules/home/domain/entity/menu_item.dart';
 import 'package:buracometro/modules/home/domain/entity/menu_item_types.dart';
 import 'package:buracometro/modules/home/presentation/bloc/home_event.dart';
 import 'package:buracometro/modules/home/presentation/bloc/home_state.dart';
-import 'package:firebase_core/firebase_core.dart';
+import 'package:buracometro/modules/maps/presentation/pages/maps_page.dart';
+import 'package:buracometro/modules/report/presentation/reports_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:get/get.dart';
-import 'package:get_it/get_it.dart';
 import '../../../../di/injection.dart';
+import '../../../help/presentation/help_page.dart';
 import '../bloc/home_bloc.dart';
-import '../widgets/bottom_navigation_item.dart';
 import '../widgets/custom_bottom_navigation_bar.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({Key? key}) : super(key: key);
 
   final HomeBloc _homeBloc = getIt<HomeBloc>()..add(const HomeEventInit());
+  final PageController _pageController = PageController();
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +27,7 @@ class HomePage extends StatelessWidget {
       child: BlocConsumer<HomeBloc, HomeState>(
         listener: _handleStateChanges,
         builder: (context, state) {
+          debugPrint(state.toString());
           if (state is HomeStateSwitchTab) {
             return _buildHomePage(
               state.rightMenuItems,
@@ -52,7 +52,7 @@ class HomePage extends StatelessWidget {
 
   void _handleStateChanges(BuildContext context, HomeState state) {
     if (state is HomeStateSwitchTab) {
-      debugPrint(state.tabIndex.toString());
+      _pageController.jumpToPage(state.tabIndex);
     }
   }
 
@@ -62,7 +62,6 @@ class HomePage extends StatelessWidget {
     int selectedTab,
   ) {
     return BaseAppStructure(
-      body: Container(),
       bottomNavigationBar: BottomAppBar(
         shape: const CircularNotchedRectangle(),
         notchMargin: 10,
@@ -76,10 +75,21 @@ class HomePage extends StatelessWidget {
           ),
         ),
       ),
+      body: PageView(
+        controller: _pageController,
+        physics: const NeverScrollableScrollPhysics(),
+        children: [
+          ReportPage(),
+          MapsPage(),
+          HelpPage(),
+          AboutPage()
+        ],
+      ),
     );
   }
 
   void _changeTab(MenuItemType menuType) {
+    debugPrint(menuType.name);
     _homeBloc.add(HomeEventChangeTab(tabIndex: menuType.index));
   }
 }
