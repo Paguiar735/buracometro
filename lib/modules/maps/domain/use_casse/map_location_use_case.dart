@@ -1,16 +1,18 @@
 import 'dart:async';
 import 'package:buracometro/modules/maps/domain/entity/user_location.dart';
+import 'package:geocode/geocode.dart';
 import 'package:get/get.dart';
 import 'package:injectable/injectable.dart';
-import 'package:location/location.dart';
+import 'package:location/location.dart' as location;
+import 'package:location_platform_interface/location_platform_interface.dart';
 
 @injectable
 class MapLocationUseCase {
-  final _location = Location();
+  final _location = location.Location();
 
   MapLocationUseCase();
 
-  FutureOr<Response<UserLocation>> execute() async {
+  FutureOr<Response<Location>> execute() async {
     final status = await _location.hasPermission();
 
     if (status == PermissionStatus.deniedForever) {
@@ -29,11 +31,11 @@ class MapLocationUseCase {
     }
   }
 
-  Future<Response<UserLocation>> _requestLocation() async {
+  Future<Response<Location>> _requestLocation() async {
     final result = await _location.getLocation();
     return Response(
       statusCode: 200,
-      body: UserLocation(
+      body: Location(
         latitude: result.latitude ?? 0,
         longitude: result.longitude ?? 0,
       ),

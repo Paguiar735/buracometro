@@ -1,5 +1,3 @@
-import 'package:buracometro/modules/home/domain/entity/menu_item.dart';
-
 abstract class HomeEvent {
   const HomeEvent();
 }

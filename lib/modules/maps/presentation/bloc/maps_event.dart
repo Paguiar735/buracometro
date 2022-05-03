@@ -1,28 +1,23 @@
+import 'package:buracometro/modules/maps/domain/entity/user_location.dart';
+
 abstract class MapsEvent {
   const MapsEvent();
 }
 
 class MapsEventRequestLocation extends MapsEvent {
-
   const MapsEventRequestLocation();
 }
 
 class MapsEventShowLocation extends MapsEvent {
-  final double latitude;
-  final double longitude;
+  final Location location;
 
   MapsEventShowLocation({
-    required this.latitude,
-    required this.longitude,
+    required this.location,
   });
 }
 
 class MapsEventAddMarker extends MapsEvent {
-  final double latitude;
-  final double longitude;
+  final Location markerLocation;
 
-  MapsEventAddMarker({
-    required this.latitude,
-    required this.longitude,
-  });
+  MapsEventAddMarker({required this.markerLocation});
 }

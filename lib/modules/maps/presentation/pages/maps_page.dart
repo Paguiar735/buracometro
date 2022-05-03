@@ -1,7 +1,12 @@
 import 'package:buracometro/di/injection.dart';
+import 'package:buracometro/modules/maps/domain/entity/user_location.dart';
 import 'package:buracometro/modules/maps/presentation/bloc/maps_bloc.dart';
 import 'package:buracometro/modules/maps/presentation/bloc/maps_event.dart';
 import 'package:buracometro/modules/maps/presentation/bloc/maps_state.dart';
+import 'package:buracometro/modules/maps/presentation/bloc/zip_code_bloc.dart';
+import 'package:buracometro/modules/maps/presentation/bloc/zip_code_event.dart';
+import 'package:buracometro/modules/maps/presentation/widgets/zip_code_text_input.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -50,32 +55,58 @@ class _MapsPageState extends State<MapsPage> {
   }
 
   Widget buildGoogleMapPage(MapsStateLoaded state) {
-    return GoogleMap(
-      onMapCreated: (controller) {
-        setState(() {});
-        mapsController = controller;
-      },
-      markers: state.markersList.toSet(),
-      padding: const EdgeInsets.only(bottom: 60),
-      mapType: MapType.normal,
-      onTap: (position) {
-        _mapsBloc.add(MapsEventAddMarker(
-          latitude: position.latitude,
-          longitude: position.longitude,
-        ));
-      },
-      mapToolbarEnabled: false,
-      myLocationButtonEnabled: true,
-      myLocationEnabled: true,
-      tiltGesturesEnabled: true,
-      zoomControlsEnabled: false,
-      initialCameraPosition: CameraPosition(
-        target: LatLng(
-          state.userLocation?.latitude ?? state.markersList.first.position.latitude,
-          state.userLocation?.longitude ?? state.markersList.first.position.longitude,
+    var cameraPos = const CameraPosition(target: LatLng(0, 0));
+    return Stack(
+      children: [
+        GoogleMap(
+          onMapCreated: (controller) {
+            setState(() {});
+            mapsController = controller;
+          },
+          onTap: (position) {
+            _mapsBloc.add(
+              MapsEventAddMarker(
+                markerLocation: Location.fromLatLng(position),
+              ),
+            );
+          },
+          onCameraIdle: () {
+            BlocProvider.of<ZipCodeBloc>(context).add(
+              ZipCodeEventShowZipCode(
+                location: Location.fromLatLng(
+                  cameraPos.target,
+                ),
+              ),
+            );
+          },
+          onCameraMove: (cameraPosition) {
+            cameraPos = cameraPosition;
+          },
+          padding: const EdgeInsets.only(bottom: 60),
+          markers: state.markersList.toSet(),
+          mapType: MapType.normal,
+          mapToolbarEnabled: false,
+          myLocationButtonEnabled: true,
+          myLocationEnabled: true,
+          tiltGesturesEnabled: true,
+          zoomControlsEnabled: false,
+          initialCameraPosition: CameraPosition(
+            target: LatLng(
+              state.location.latitude,
+              state.location.longitude,
+            ),
+            zoom: 18,
+          ),
         ),
-        zoom: 18,
-      ),
+        const ZipCodeTextInput(),
+        const Align(
+          alignment: Alignment.center,
+          child: Icon(
+            CupertinoIcons.location_solid,
+            color: Colors.black,
+          ),
+        ),
+      ],
     );
   }
 }

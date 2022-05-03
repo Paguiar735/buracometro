@@ -1,9 +1,23 @@
-class UserLocation {
-  final double latitude;
-  final double longitude;
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-  const UserLocation({
-    required this.latitude,
-    required this.longitude
-  });
+class Location extends LatLng {
+
+  const Location({
+    required latitude,
+    required longitude,
+  }) : super(latitude, longitude);
+
+  factory Location.fromLatLng(LatLng position) {
+    return Location(
+      latitude: position.latitude,
+      longitude: position.longitude,
+    );
+  }
+
+  LatLng toLatLang() {
+    return LatLng(
+      latitude,
+      longitude,
+    );
+  }
 }

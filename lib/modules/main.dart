@@ -1,8 +1,9 @@
 import 'package:buracometro/modules/home/presentation/page/home_page.dart';
-import 'package:buracometro/modules/maps/presentation/pages/maps_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../di/injection.dart';
+import 'maps/presentation/bloc/zip_code_bloc.dart';
 
 void main() {
   configureDependencies();
@@ -14,9 +15,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData.dark(),
-      home: HomePage(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<ZipCodeBloc>(create: (_) => getIt<ZipCodeBloc>(),)
+      ],
+      child: MaterialApp(
+        theme: ThemeData.dark(),
+        home: const HomePage(),
+      ),
     );
   }
 }

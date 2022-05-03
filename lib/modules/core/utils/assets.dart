@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:buracometro/modules/core/utils/themes.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 

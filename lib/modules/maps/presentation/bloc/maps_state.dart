@@ -10,11 +10,11 @@ class MapsStateLoading extends MapsState {
 }
 
 class MapsStateLoaded extends MapsState {
-  final UserLocation? userLocation;
+  final Location location;
   final List<Marker> markersList;
 
-  const MapsStateLoaded({
-    this.userLocation,
-    required this.markersList,
+  MapsStateLoaded({
+    required this.location,
+    this.markersList = const [],
   });
 }
