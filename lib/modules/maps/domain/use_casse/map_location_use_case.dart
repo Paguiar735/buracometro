@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:buracometro/modules/maps/domain/entity/user_location.dart';
-import 'package:geocode/geocode.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:injectable/injectable.dart';
 import 'package:location/location.dart' as location;
@@ -33,13 +33,18 @@ class MapLocationUseCase {
 
   Future<Response<Location>> _requestLocation() async {
     final result = await _location.getLocation();
-    return Response(
-      statusCode: 200,
-      body: Location(
-        latitude: result.latitude ?? 0,
-        longitude: result.longitude ?? 0,
-      ),
-    );
+    try {
+      return Response(
+        statusCode: 200,
+        body: Location(
+          latitude: result.latitude ?? 0,
+          longitude: result.longitude ?? 0,
+        ),
+      );
+    } catch (error) {
+      debugPrint(error.toString());
+      return const Response(statusCode: 500);
+    }
   }
 
   bool _hasPermission(PermissionStatus status) =>
