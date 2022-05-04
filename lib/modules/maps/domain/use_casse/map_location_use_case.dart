@@ -42,7 +42,6 @@ class MapLocationUseCase {
         ),
       );
     } catch (error) {
-      debugPrint(error.toString());
       return const Response(statusCode: 500);
     }
   }
