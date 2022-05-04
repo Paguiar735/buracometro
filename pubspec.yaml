@@ -37,6 +37,16 @@ dependencies:
   flutter_bloc: ^8.0.1
   get: ^4.6.1
   flutter_svg: ^1.0.3
+  firebase_core: ^1.15.0
+  firebase_analytics: ^9.1.6
+  firebase_storage: ^10.2.14
+  firebase_remote_config: ^2.0.5
+  injectable: ^1.5.3
+  get_it: ^7.2.0
+  google_maps_flutter: ^2.1.4
+  location: ^4.3.0
+  shimmer: ^2.0.0
+  geocode: ^1.0.1
 
 dev_dependencies:
   flutter_test:
@@ -48,6 +58,8 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^1.0.0
+  injectable_generator: ^1.5.3
+  build_runner: ^2.1.10
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
